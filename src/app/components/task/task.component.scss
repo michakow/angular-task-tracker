@@ -1,9 +1,46 @@
-div{
+.task{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 10px 0;
   padding: 10px 15px;
   width: 100%;
   font-size: 2rem;
   background-color: #fff;
   border-radius: 5px;
-  border-left: 15px solid green;
+
+  &--done{
+    background-color: rgb(236, 236, 236);
+  }
+
+  &__paragraph{
+    font-size: 1.6rem;
+
+    &--name{
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    &--date{
+      font-style: italic;
+    }
+  }
+
+  &__icon{
+    font-size: 2rem;
+    cursor: pointer;
+
+    &-delete{
+      color: red;
+    }
+
+    &-status{
+      margin-right: 16px;
+      color: gray;
+
+      &--done{
+        color: green;
+      }
+    }
+  }
 }

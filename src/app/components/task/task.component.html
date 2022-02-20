@@ -1,1 +1,10 @@
-<div>{{task.name}}</div>
+<div class="task" [ngClass]="{'task--done': task.done}">
+  <div class="task__info" [ngStyle]="{'color': task.done ? 'rgb(106,106,106)' : 'black'}">
+    <p class="task__paragraph task__paragraph--name">{{task.name}}</p>
+    <p class="task__paragraph task__paragraph--date">{{task.date || 'brak terminu'}}</p>
+  </div>
+  <div class="task__icons">
+    <fa-icon class="task__icon task__icon-status" [ngClass]="{'task__icon-status--done': task.done}" [icon]="task.done ? faClipboardCheck : faClipboard" (click)="onToggleDone(task)"></fa-icon>
+    <fa-icon class="task__icon task__icon-delete" [icon]="faTimes" (click)="onDelete(task)"></fa-icon>
+  </div>
+</div>

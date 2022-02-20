@@ -5,7 +5,7 @@ export const TASKS: Task[] = [
     id: 0,
     name: 'Napisać projekt w Angular',
     date: '2022-02-19',
-    done: false
+    done: true
   },
   {
     id: 1,
@@ -18,5 +18,11 @@ export const TASKS: Task[] = [
     name: 'odpisać na maile',
     date: '',
     done: false
+  },
+  {
+    id: 3,
+    name: 'obejrzeć film',
+    date: '',
+    done: true
   }
 ]
