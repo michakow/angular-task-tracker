@@ -1,0 +1,10 @@
+<p>task-details works!</p>
+<div *ngIf="task; else noTask">
+  <p>nazwa: {{task.name}}</p>
+  <p>termin: {{task.date || 'brak terminu'}}</p>
+  <p>id: {{task.id}}</p>
+</div>
+
+<ng-template #noTask>
+  <p>brak zadania o takim id</p>
+</ng-template>

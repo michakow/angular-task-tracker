@@ -7,13 +7,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskComponent } from './components/task/task.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TaskDetailsComponent } from './components/task-details/task-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TasksComponent,
-    TaskComponent
+    TaskComponent,
+    TaskDetailsComponent
   ],
   imports: [
     BrowserModule,
