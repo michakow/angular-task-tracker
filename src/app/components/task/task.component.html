@@ -1,6 +1,6 @@
 <div class="task" [ngClass]="{'task--done': task.done}">
   <div class="task__info" [ngStyle]="{'color': task.done ? 'rgb(106,106,106)' : 'black'}">
-    <p class="task__paragraph task__paragraph--name">{{task.name}}</p>
+    <a [routerLink]="['task', task.id]"><p class="task__paragraph task__paragraph--name">{{task.name}}</p></a>
     <p class="task__paragraph task__paragraph--date">{{task.date || 'brak terminu'}}</p>
   </div>
   <div class="task__icons">
