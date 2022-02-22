@@ -20,9 +20,38 @@ export class TaskComponent implements OnInit {
   faClipboardCheck = faClipboardCheck;
   faInfoCircle = faInfoCircle;
 
+  dateColor: string | undefined;
+  dateText: string | undefined
+
   constructor() { }
 
   ngOnInit(): void {
+    this.dateText = this.checkDeadline();
+  }
+
+  checkDeadline(): string {
+    const taskDate = new Date(this.task.date);
+    const date = new Date();
+    const month = date.getMonth() < 9 ? '0'+(date.getMonth()+1) : date.getMonth()+1;
+    const day = date.getDate() < 10 ? '0'+date.getDate() : date.getDate();
+    const today = date.getFullYear()+'-'+month+'-'+day;
+    const daysToDeadLine = (taskDate.getTime() - date.getTime()) / (1000*3600*24)
+    
+    if(this.task.date === today) {
+      this.dateColor = 'red';
+      return 'Dzisiaj'
+    };
+    if(daysToDeadLine === 1) {
+      this.dateColor = 'orange';
+      return 'Jutro'
+    };
+    if(daysToDeadLine < 0) {
+      if(this.task.done) this.dateColor = 'rgb(175, 95, 95)'
+      else this.dateColor = 'red';
+      return `${this.task.date} (Po terminie)`
+    };
+    this.dateColor = 'unset';
+    return this.task.date || 'brak terminu'
   }
 
   onToggleDone(task: Task) {
