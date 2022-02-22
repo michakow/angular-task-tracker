@@ -4,6 +4,7 @@
     <p class="task__paragraph task__paragraph--date">{{task.date || 'brak terminu'}}</p>
   </div>
   <div class="task__icons">
+    <a [routerLink]="['task', task.id]"><fa-icon class="task__icon task__icon-info" [icon]="faInfoCircle"></fa-icon></a>
     <fa-icon class="task__icon task__icon-status" [ngClass]="{'task__icon-status--done': task.done}" [icon]="task.done ? faClipboardCheck : faClipboard" (click)="onToggleDone(task)"></fa-icon>
     <fa-icon class="task__icon task__icon-delete" [icon]="faTimes" (click)="onDelete(task)"></fa-icon>
   </div>

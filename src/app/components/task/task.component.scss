@@ -30,12 +30,16 @@
     font-size: 2rem;
     cursor: pointer;
 
+    &-info{
+      color: royalblue;
+    }
+
     &-delete{
       color: red;
     }
 
     &-status{
-      margin-right: 16px;
+      margin: 0 16px;
       color: gray;
 
       &--done{

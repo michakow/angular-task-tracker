@@ -3,6 +3,7 @@ import { Task } from 'src/app/Task';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-task',
@@ -17,6 +18,7 @@ export class TaskComponent implements OnInit {
   faTimes = faTimes;
   faClipboard = faClipboard;
   faClipboardCheck = faClipboardCheck;
+  faInfoCircle = faInfoCircle;
 
   constructor() { }
 
