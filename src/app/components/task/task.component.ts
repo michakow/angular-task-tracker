@@ -30,14 +30,14 @@ export class TaskComponent implements OnInit {
   }
 
   checkDeadline(): string {
-    const taskDate = new Date(this.task.date);
+    const taskDate = new Date(this.task.deadline);
     const date = new Date();
     const month = date.getMonth() < 9 ? '0'+(date.getMonth()+1) : date.getMonth()+1;
     const day = date.getDate() < 10 ? '0'+date.getDate() : date.getDate();
     const today = date.getFullYear()+'-'+month+'-'+day;
     const daysToDeadLine = (taskDate.getTime() - date.getTime()) / (1000*3600*24)
     
-    if(this.task.date === today) {
+    if(this.task.deadline === today) {
       this.dateColor = 'red';
       return 'Dzisiaj'
     };
@@ -45,20 +45,20 @@ export class TaskComponent implements OnInit {
       this.dateColor = 'orange';
       return 'Jutro'
     };
-    if(daysToDeadLine < 0) {
+    if(daysToDeadLine < 0 && this.task.done === false) {
       if(this.task.done) this.dateColor = 'rgb(175, 95, 95)'
       else this.dateColor = 'red';
-      return `${this.task.date} (Po terminie)`
+      return `${this.task.deadline} (Po terminie)`
     };
     this.dateColor = 'unset';
-    return this.task.date || 'brak terminu'
+    return this.task.deadline || 'brak terminu'
   }
 
-  onToggleDone(task: Task) {
+  onToggleDone(task: Task): void {
     this.onToggleDoneTask.emit(task);
   }
 
-  onDelete(task: Task) {
+  onDelete(task: Task): void {
     this.onDeleteTask.emit(task);
   }
 
