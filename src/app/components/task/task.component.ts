@@ -4,6 +4,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { TaskService } from 'src/app/services/task.service';
+
 
 @Component({
   selector: 'app-task',
@@ -12,8 +14,8 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class TaskComponent implements OnInit {
   @Input() task!: Task;
-  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
-  @Output() onToggleDoneTask: EventEmitter<Task> = new EventEmitter();
+  // @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  // @Output() onToggleDoneTask: EventEmitter<Task> = new EventEmitter();
 
   faTimes = faTimes;
   faClipboard = faClipboard;
@@ -23,7 +25,7 @@ export class TaskComponent implements OnInit {
   dateColor: string | undefined;
   dateText: string | undefined
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
     this.dateText = this.checkDeadline();
@@ -41,25 +43,35 @@ export class TaskComponent implements OnInit {
       this.dateColor = 'red';
       return 'Dzisiaj'
     };
+
     if(daysToDeadLine === 1) {
       this.dateColor = 'orange';
       return 'Jutro'
     };
+
     if(daysToDeadLine < 0 && this.task.done === false) {
-      if(this.task.done) this.dateColor = 'rgb(175, 95, 95)'
-      else this.dateColor = 'red';
+      this.dateColor = 'red';
       return `${this.task.deadline} (Po terminie)`
     };
+
+    if(this.task.completion && (new Date(this.task.completion) > taskDate)) {
+      this.dateColor = 'rgb(175, 95, 95)';
+      return `${this.task.deadline} (Po terminie)`;
+    }
+
     this.dateColor = 'unset';
     return this.task.deadline || 'brak terminu'
   }
 
   onToggleDone(task: Task): void {
-    this.onToggleDoneTask.emit(task);
+    // this.onToggleDoneTask.emit(task);
+    this.taskService.toggleDoneTask(task);
+    this.dateText = this.checkDeadline();
   }
 
   onDelete(task: Task): void {
-    this.onDeleteTask.emit(task);
+    // this.onDeleteTask.emit(task);
+    this.taskService.deleteTask(task);
   }
 
 }
